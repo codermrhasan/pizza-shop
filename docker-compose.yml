@@ -1,0 +1,20 @@
+version: '3.7'
+services: 
+    postgres:
+        restart: always
+        image: postgres:12.1-alpine
+        environment: 
+            POSTGRES_USER: ${DB_USER}
+            POSTGRES_PASSWORD: ${DB_PASS}
+            POSTGRES_DB: ${DB_NAME} 
+    
+    backend:
+        env_file: .env
+        build: './backend'
+        command: /usr/src/app/backend/entrypoint.sh
+        volumes: 
+            - ./backend:/usr/src/app/backend
+        ports:
+            - "8000:8000"
+        depends_on:
+            - postgres

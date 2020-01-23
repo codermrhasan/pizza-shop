@@ -1,0 +1,4 @@
+# removing environment variables from git tracking for security.
+# you have to create your own env varaibles 
+# to set your own env file see set_env_variable.txt
+.env
